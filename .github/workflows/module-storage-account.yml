@@ -2,7 +2,7 @@ name: module-storage-account
 concurrency: module-storage-account
 
 on:
-  workflow-dispatch:
+  workflow_dispatch:
   push:
     branches:
       - main
