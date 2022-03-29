@@ -40,4 +40,8 @@ jobs:
       name: Publish module
       with:
         inlineScript: |
-          az bicep build --file ${{ env.MODULE_FILE_PATH }}
+          az bicep install
+          az bicep publish \
+            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
+            --file ${{ env.MODULE_FILE_PATH }} \
+            --debug
