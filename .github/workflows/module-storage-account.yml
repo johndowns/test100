@@ -30,8 +30,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Get module version number
       run: |
-        echo "TODO will run jq here"
-        echo "MODULE_VERSION=1.2.3" >> $GITHUB_ENV
+        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
+        majorMinorVersionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
+        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
